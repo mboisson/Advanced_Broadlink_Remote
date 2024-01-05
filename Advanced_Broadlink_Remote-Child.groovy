@@ -54,7 +54,9 @@ def pageConfig() {
 		section("Select remote to use to control device"){
 			input "remote", "capability.actuator", title: "Remote", multiple: false
 		}
-
+        section("Delay between commands") {
+			input (name: "delay", type: "number", title: "When multiple commands are to be sent, how long to wait between them (in milliseconds)", required: true, defaultValue: 1000)
+		}
         section("Log Settings...") {
 			input (name: "logLevel", type: "enum", title: "Live Logging Level: Messages with this level and higher will be logged", options: [[0: 'Disabled'], [1: 'Error'], [2: 'Warning'], [3: 'Info'], [4: 'Debug'], [5: 'Trace']], defaultValue: 3)
 			input "logDropLevelTime", "decimal", title: "Drop down to Info Level Minutes", required: true, defaultValue: 5
@@ -153,6 +155,7 @@ def initialize(child) {
 	// Set device settings
 	child.setLogLevel(loggingLevel)
 
+    delay = settings.delay.toInteger()
 	// Subscribe to the new sensor(s) and device
 	subscribe(sensor, "power", powerHandler)
     subscribe(child, "commandToSend", commandHandler)
@@ -244,9 +247,14 @@ def sendCommand(commandName)
     def child = getChild()
     if (commandName == "null") { return }
     child.logger("trace", "sendCommand:" + commandName)
-    remote.push(commandName)
-    child.setLastCommand(commandName)
-    child.resetCommandToSend()
+    
+    String[] commands = commandName.split(',')
+    for (command in commands) {
+        remote.push(command)
+        child.setLastCommand(command)
+        child.resetCommandToSend()
+        pauseExecution(settings.delay)
+    }
 }
 
 //************************************************************

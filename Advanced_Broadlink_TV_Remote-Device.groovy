@@ -45,19 +45,19 @@ metadata {
 	}
     
     preferences {
-				input "onCommandTV", "string", title: "Command to use to turn TV on", required: false
-				input "offCommandTV", "string", title: "Command to use to turn TV off", required: false
+				input "onCommandTV", "string", title: "Command(s) to use to turn TV on", required: false
+				input "offCommandTV", "string", title: "Command(s) to use to turn TV off", required: false
 				input "powerThresholdOnTV", "decimal", title: "Power value above which the TV is considered on (in W)", required: false, defaultValue: 10
-				input "channelUp", "string", title: "Command to use for channel up", required: false
-				input "channelDown", "string", title: "Command to use for channel down", required: false
-				input "input1", "string", title: "Command to set to input 1", required: false
-				input "input2", "string", title: "Command to set to input 2", required: false
-				input "onCommandSound", "string", title: "Command to use to turn sound system on", required: false
-				input "offCommandSound", "string", title: "Command to use to turn sound system off", required: false
-				input "volumeUp", "string", title: "Command to use for volume up", required: false
-				input "volumeDown", "string", title: "Command to use for volume down", required: false
-				input "mute", "string", title: "Command to use for mute", required: false
-				input "unmute", "string", title: "Command to use for unmute", required: false
+				input "channelUp", "string", title: "Command(s) to use for channel up", required: false
+				input "channelDown", "string", title: "Command(s) to use for channel down", required: false
+				input "input1", "string", title: "Command(s) to set to input 1", required: false
+				input "input2", "string", title: "Command(s) to set to input 2", required: false
+				input "onCommandSound", "string", title: "Command(s) to use to turn sound system on", required: false
+				input "offCommandSound", "string", title: "Command(s) to use to turn sound system off", required: false
+				input "volumeUp", "string", title: "Command(s) to use for volume up", required: false
+				input "volumeDown", "string", title: "Command(s) to use for volume down", required: false
+				input "mute", "string", title: "Command(s) to use for mute", required: false
+				input "unmute", "string", title: "Command(s) to use for unmute", required: false
 				input "powerThresholdOnSound", "decimal", title: "Power value above which the sound system is considered on (in W)", required: false, defaultValue: 10
     }
 }

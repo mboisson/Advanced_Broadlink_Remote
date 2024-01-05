@@ -61,7 +61,9 @@ def pageConfig() {
 		section("Select remote to use to control sound"){
 			input "sound_remote", "capability.actuator", title: "Sound remote", multiple: false
 		}
-	
+        section("Delay between commands") {
+			input (name: "delay", type: "number", title: "When multiple commands (comma separated) are to be sent, how long to wait between them (in milliseconds)", required: true, defaultValue: 1000)
+		}
 		section("Log Settings...") {
 			input (name: "logLevel", type: "enum", title: "Live Logging Level: Messages with this level and higher will be logged", options: [[0: 'Disabled'], [1: 'Error'], [2: 'Warning'], [3: 'Info'], [4: 'Debug'], [5: 'Trace']], defaultValue: 3)
 			input "logDropLevelTime", "decimal", title: "Drop down to Info Level Minutes", required: true, defaultValue: 5
@@ -160,6 +162,7 @@ def initialize(child) {
 	// Set device settings
 	child.setLogLevel(loggingLevel)
 
+    delay = settings.delay.toInteger()
 	// Subscribe to the new sensor(s) and device
 	subscribe(tv_sensor, "power", powerHandlerTV)
 	subscribe(sound_sensor, "power", powerHandlerSound)
@@ -271,16 +274,20 @@ def sendCommand(commandName)
     def remote = null
     String[] str = commandName.split(' ')
     def r = str[0]
-    def c = str[1]
+    def command_list = str[1]
     child.logger("trace", "remote to use:" + r)
-    child.logger("trace", "command to send:" + c)
-    if (r == "tv") {
-        child.logger("trace", "sendding tv command:" + c)
-        tv_remote.push(c)
-    }
-    if (r == "sound") {
-        child.logger("trace", "sendding sound command:" + c)
-        sound_remote.push(c)
+    child.logger("trace", "command to send:" + command_list)
+    String[] commands = command_list.split(',')
+    for (c in commands) {
+        if (r == "tv") {
+            child.logger("trace", "sendding tv command:" + c)
+            tv_remote.push(c)
+        }
+        if (r == "sound") {
+            child.logger("trace", "sendding sound command:" + c)
+            sound_remote.push(c)
+        }
+        pauseExecution(settings.delay)
     }
     child.setLastCommand(commandName)
     child.resetCommandToSend()

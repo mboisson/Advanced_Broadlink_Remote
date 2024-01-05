@@ -37,13 +37,13 @@ metadata {
 	}
     
     preferences {
-				input "onCommand", "string", title: "Command to use to turn device on", required: false
-				input "offCommand", "string", title: "Command to use to turn device off", required: false
+				input "onCommand", "string", title: "Command(s) to use to turn device on", required: false
+				input "offCommand", "string", title: "Command(s) to use to turn device off", required: false
 				input "powerThresholdOn", "decimal", title: "Power value above which the device is considered on (in W)", required: false, defaultValue: 10
-				input "up", "string", title: "Command to use for up", required: false
-				input "down", "string", title: "Command to use for down", required: false
-				input "custom1", "string", title: "Custom command 1", required: false
-				input "custom2", "string", title: "Custom command 2", required: false
+				input "up", "string", title: "Command(s) to use for up", required: false
+				input "down", "string", title: "Command(s) to use for down", required: false
+				input "custom1", "string", title: "Custom command(s) 1", required: false
+				input "custom2", "string", title: "Custom command(s) 2", required: false
     }
 }
 
