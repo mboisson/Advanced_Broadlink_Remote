@@ -32,6 +32,8 @@ metadata {
         command "mute"
         command "unmute"
         command "push", ["name"]
+        command "nextTrack"
+        command "previousTrack"
         
         attribute "last_command", "string"
         attribute "commandToSend", "string"
@@ -73,7 +75,13 @@ def push(name) {
 def channelUp() {
     sendEvent(name: "commandToSend", value:"tv " + settings.channelUp)
 }
+def nextTrack() {
+    sendEvent(name: "commandToSend", value:"tv " + settings.channelUp)
+}
 def channelDown() {
+    sendEvent(name: "commandToSend", value:"tv " + settings.channelDown)
+}
+def previousTrack() {
     sendEvent(name: "commandToSend", value:"tv " + settings.channelDown)
 }
 def volumeUp() {
