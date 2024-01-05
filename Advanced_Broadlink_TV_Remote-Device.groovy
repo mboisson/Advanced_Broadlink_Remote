@@ -317,6 +317,7 @@ def setPower(value) {
 def setPowerTV(value) {
 	logger("trace", "setPowerTV($value) - sendEvent")
 	sendEvent(name:"powerTV", value: value, unit: units)
+    sendEvent(name:"power", value: (value.toFloat() + device.currentValue("powerSound").toFloat()).round(1), unit: units)
     if (settings.powerThresholdOnTV != null) {
         if (value > settings.powerThresholdOnTV) {
             if (device.currentValue("switchTV") != "on") {
@@ -347,6 +348,7 @@ def setPowerTV(value) {
 def setPowerSound(value) {
 	logger("trace", "setPowerSound($value) - sendEvent")
 	sendEvent(name:"powerSound", value: value, unit: units)
+    sendEvent(name:"power", value: (value.toFloat() + device.currentValue("powerTV").toFloat()).round(1), unit: units)
     if (settings.powerThresholdOnSound != null) {
         if (value > settings.powerThresholdOnSound) {
             if (device.currentValue("switchSound") != "on") {
