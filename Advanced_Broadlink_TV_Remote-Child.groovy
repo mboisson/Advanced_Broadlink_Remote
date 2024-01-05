@@ -252,7 +252,6 @@ def updatePower() {
     if (sound_sensor != null) {
         child.setPowerSound(sound_sensor.currentValue("power"))
     }
-    child.setPower(tv_power + sound_power)
     return tv_power + sound_power
 }
 
