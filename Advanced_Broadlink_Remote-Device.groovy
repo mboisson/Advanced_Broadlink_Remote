@@ -39,7 +39,8 @@ metadata {
     preferences {
 				input "onCommand", "string", title: "Command(s) to use to turn device on", required: false
 				input "offCommand", "string", title: "Command(s) to use to turn device off", required: false
-				input "powerThresholdOn", "decimal", title: "Power value above which the device is considered on (in W)", required: false, defaultValue: 10
+				input "powerThresholdOn", "decimal", title: "Power value above which the device is considered on (or off) (in W)", required: false, defaultValue: 10
+				input "abovePowerMeansOn", "bool", title: "Power value above threshold means on ?", required: true, defaultValue: true
 				input "up", "string", title: "Command(s) to use for up", required: false
 				input "down", "string", title: "Command(s) to use for down", required: false
 				input "custom1", "string", title: "Custom command(s) 1", required: false
@@ -183,7 +184,7 @@ def setPower(value) {
 	logger("trace", "setPower($value) - sendEvent")
 	sendEvent(name:"power", value: value, unit: units)
     if (settings.powerThresholdOn != null) {
-        if (value > settings.powerThresholdOn) {
+        if (value > settings.powerThresholdOn && settings.abovePowerMeansOn ) {
             if (device.currentValue("switch") != "on") {
                 sendEvent(name:"switch", value:"on")
             }
