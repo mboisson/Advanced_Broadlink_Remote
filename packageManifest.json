@@ -1,0 +1,52 @@
+{
+  "packageName": "Advanced Broadlink Remote",
+  "author": "Maxime Boissonneault",
+  "version": "1.0",
+  "minimumHEVersion": "2.3.7",
+  "dateReleased": "2024-01-05",
+  "apps": [
+    {
+      "id": "ae537814-4aba-4f94-a2fd-0a6d363cdf01",
+      "name": "Advanced Broadlink Remote Manager",
+      "namespace": "mboisson",
+      "location": "https://raw.githubusercontent.com/mboisson/Hubitat-Advanced-Broadlink-Remote/main/Advanced_Broadlink_Remote-Parent.groovy",
+      "required": true,
+      "oauth": false,
+      "primary": false
+    },
+    {
+      "id": "0d24d112-f230-444c-9584-cd9b2b7b4ee6",
+      "name": "Advanced Broadlink Remote Child",
+      "namespace": "mboisson",
+      "location": "https://raw.githubusercontent.com/mboisson/Hubitat-Advanced-Broadlink-Remote/main/Advanced_Broadlink_Remote-Child.groovy",
+      "required": true,
+      "oauth": false,
+      "primary": false
+    },
+    {
+      "id": "39e0e803-48f6-485f-bd58-12f5207a7a64",
+      "name": "Advanced Broadlink TV Remote Child",
+      "namespace": "mboisson",
+      "location": "https://raw.githubusercontent.com/mboisson/Hubitat-Advanced-Broadlink-Remote/main/Advanced_Broadlink_TV_Remote-Child.groovy",
+      "required": true,
+      "oauth": false,
+      "primary": false
+    }
+  ],
+  "drivers": [
+    {
+      "id": "17757667-1eba-42d3-ad6e-024c3b6ea0f7",
+      "name": "Advanced Broadlink Remote Device",
+      "namespace": "mboisson",
+      "location": "https://raw.githubusercontent.com/mboisson/Hubitat-Advanced-Broadlink-Remote/main/Advanced_Broadlink_Remote-Device.groovy",
+      "required": true
+    },
+    {
+      "id": "3558a6c8-cc72-402a-8a87-5ca23eb65897",
+      "name": "Advanced Broadlink TV Remote Device",
+      "namespace": "mboisson",
+      "location": "https://raw.githubusercontent.com/mboisson/Hubitat-Advanced-Broadlink-Remote/main/Advanced_Broadlink_TV_Remote-Device.groovy",
+      "required": true
+    }
+  ]
+}
